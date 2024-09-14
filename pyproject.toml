@@ -1,0 +1,31 @@
+[project]
+name = "driver-app"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "alembic>=1.13.2",
+    "fastapi[standard]>=0.114.1",
+    "psycopg>=3.2.1",
+]
+
+[tool.uv]
+dev-dependencies = [
+    "pytest-cov>=5.0.0",
+    "pytest>=8.3.3",
+    "ruff>=0.6.5",
+]
+
+
+[tool.ruff]
+line-length = 100
+extend-exclude = ['migrations']
+
+[tool.ruff.lint]
+preview = true
+select = ['I', 'F', 'E', 'W']
+
+[tool.ruff.format]
+preview = true
+quote-style = 'single'
