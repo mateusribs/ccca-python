@@ -1,4 +1,4 @@
-from driver_app.validate_cpf import validate_cpf
+from src.validate_cpf import validate_cpf
 
 
 def test_validate_cpf_digit_different_from_zero():

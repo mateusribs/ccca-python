@@ -1,7 +1,7 @@
-from driver_app.account_dao import AccountDAODatabase
-from driver_app.get_account import GetAccount
-from driver_app.signup import Signup
-from driver_app.user import UserSchema
+from src.account_dao import AccountDAODatabase
+from src.get_account import GetAccount
+from src.signup import Signup
+from src.user import UserSchema
 from fastapi import FastAPI, HTTPException
 
 app = FastAPI()

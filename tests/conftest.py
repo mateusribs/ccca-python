@@ -1,7 +1,7 @@
 import pytest
-from driver_app.account_dao import AccountDAOMemory
-from driver_app.get_account import GetAccount
-from driver_app.signup import Signup
+from src.account_dao import AccountDAOMemory
+from src.get_account import GetAccount
+from src.signup import Signup
 
 
 @pytest.fixture(scope='function')

@@ -1,8 +1,8 @@
 import re
 import uuid
 
-from driver_app.account_dao import AccountDAO
-from driver_app.validate_cpf import validate_cpf
+from src.account_dao import AccountDAO
+from src.validate_cpf import validate_cpf
 
 
 class Signup:
