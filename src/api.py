@@ -1,8 +1,9 @@
+from fastapi import FastAPI, HTTPException
+
 from src.account_dao import AccountDAODatabase
 from src.get_account import GetAccount
 from src.signup import Signup
 from src.user import UserSchema
-from fastapi import FastAPI, HTTPException
 
 app = FastAPI()
 
