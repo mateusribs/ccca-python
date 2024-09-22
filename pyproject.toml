@@ -6,7 +6,8 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "alembic>=1.13.2",
-    "fastapi[standard]>=0.114.1",
+    "dependency-injector>=4.42.0",
+    "flask>=3.0.3",
     "psycopg>=3.2.1",
 ]
 
