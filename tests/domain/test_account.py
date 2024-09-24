@@ -1,6 +1,6 @@
 import pytest
 
-from src.domain.account import Account
+from src.domain.entities.account import Account
 
 
 def test_valid_account_creation():

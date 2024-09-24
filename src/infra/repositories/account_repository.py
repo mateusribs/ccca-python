@@ -1,6 +1,6 @@
 from abc import ABCMeta
 
-from src.domain.account import Account
+from src.domain.entities.account import Account
 from src.infra.database.database_connection import DatabaseConnection
 
 

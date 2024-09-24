@@ -1,6 +1,6 @@
 import pytest
 
-from src.domain.coord import Coord
+from src.domain.value_objects.coord import Coord
 
 
 def test_valid_coord():

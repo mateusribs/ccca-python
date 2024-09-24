@@ -1,6 +1,6 @@
 import pytest
 
-from src.domain.cpf import CPF
+from src.domain.value_objects.cpf import CPF
 
 
 @pytest.mark.parametrize(

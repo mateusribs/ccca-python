@@ -1,6 +1,6 @@
 from abc import ABCMeta
 
-from src.domain.ride import Ride
+from src.domain.entities.ride import Ride
 from src.infra.database.database_connection import DatabaseConnection
 
 

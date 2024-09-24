@@ -1,6 +1,6 @@
 import pytest
 
-from src.domain.car_plate import CarPlate
+from src.domain.value_objects.car_plate import CarPlate
 
 
 def test_valid_car_plate():

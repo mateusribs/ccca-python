@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from src.domain.coord import Coord
+from src.domain.value_objects.coord import Coord
 
 
 class Ride:

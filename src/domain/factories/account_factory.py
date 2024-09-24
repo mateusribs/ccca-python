@@ -1,6 +1,6 @@
 import uuid
 
-from src.domain.account import Account
+from src.domain.entities.account import Account
 
 
 def create_account(

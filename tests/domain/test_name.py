@@ -1,6 +1,6 @@
 import pytest
 
-from src.domain.name import Name
+from src.domain.value_objects.name import Name
 
 
 def test_valid_name():

@@ -1,8 +1,8 @@
-from src.domain.car_plate import CarPlate
-from src.domain.cpf import CPF
-from src.domain.email import Email
-from src.domain.name import Name
-from src.domain.password import Password
+from src.domain.value_objects.car_plate import CarPlate
+from src.domain.value_objects.cpf import CPF
+from src.domain.value_objects.email import Email
+from src.domain.value_objects.name import Name
+from src.domain.value_objects.password import Password
 
 
 class Account:

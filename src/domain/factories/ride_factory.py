@@ -1,7 +1,7 @@
 import uuid
 from datetime import datetime
 
-from src.domain.ride import Ride
+from src.domain.entities.ride import Ride
 
 
 def create_ride(

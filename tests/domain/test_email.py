@@ -1,6 +1,6 @@
 import pytest
 
-from src.domain.email import Email
+from src.domain.value_objects.email import Email
 
 
 def test_valid_email():
