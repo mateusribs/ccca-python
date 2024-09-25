@@ -49,3 +49,6 @@ class Ride:
     def accept(self, driver_id: str) -> None:
         self.__driver_id = driver_id
         self.__status.accept()
+
+    def start(self) -> None:
+        self.__status.in_progress()
