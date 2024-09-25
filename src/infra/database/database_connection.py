@@ -10,7 +10,7 @@ class DatabaseConnection(metaclass=ABCMeta):
         raise NotImplementedError
 
     @abstractmethod
-    def create(self, statement: str, params: any) -> None:
+    def persist(self, statement: str, params: any) -> None:
         raise NotImplementedError
 
     @abstractmethod
@@ -28,7 +28,7 @@ class PsycoPgAdapter(DatabaseConnection):
         data = self.connection.execute(statement, params).fetchone()
         return data
 
-    def create(self, statement: str, params: any) -> None:
+    def persist(self, statement: str, params: any) -> None:
         self.connection.execute(statement, params)
         self.connection.commit()
 

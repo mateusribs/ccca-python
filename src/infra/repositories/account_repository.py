@@ -54,7 +54,7 @@ class AccountRepositoryDatabase(AccountRepository):
         )
 
     def save_account(self, account: Account) -> None:
-        self.connection.create(
+        self.connection.persist(
             """
             INSERT INTO ccca.account
             (account_id, name, email, cpf, car_plate, is_driver, is_passenger, password)

@@ -1,14 +1,20 @@
-from abc import ABCMeta
+from abc import ABCMeta, abstractmethod
 
 from src.domain.entities.ride import Ride
 from src.infra.database.database_connection import DatabaseConnection
 
 
 class RideRepository(metaclass=ABCMeta):
-    def get_ride_by_id(ride_id: str) -> Ride:
+    @abstractmethod
+    def get_ride_by_id(self, ride_id: str) -> Ride:
         raise NotImplementedError
 
-    def save_ride(ride: Ride) -> None:
+    @abstractmethod
+    def save_ride(self, ride: Ride) -> None:
+        raise NotImplementedError
+
+    @abstractmethod
+    def update_ride(self, ride: Ride) -> None:
         raise NotImplementedError
 
 
@@ -23,6 +29,7 @@ class RideRepositoryDatabase(RideRepository):
         return Ride(
             ride_id=ride_data.ride_id,
             passenger_id=ride_data.passenger_id,
+            driver_id=ride_data.driver_id,
             from_lat=ride_data.from_lat,
             from_long=ride_data.from_long,
             to_lat=ride_data.to_lat,
@@ -32,7 +39,7 @@ class RideRepositoryDatabase(RideRepository):
         )
 
     def save_ride(self, ride: Ride) -> None:
-        self.connection.create(
+        self.connection.persist(
             """
             INSERT INTO ccca.ride
             (ride_id, passenger_id, from_lat, from_long, to_lat, to_long, status, date)
@@ -49,6 +56,16 @@ class RideRepositoryDatabase(RideRepository):
                 ride.get_status(),
                 ride.get_date(),
             ),
+        )
+
+    def update_ride(self, ride: Ride) -> None:
+        self.connection.persist(
+            """
+            UPDATE ccca.ride
+            SET driver_id = %s, status = %s
+            WHERE ride_id = %s
+            """,
+            (ride.get_driver_id(), ride.get_status(), ride.get_ride_id()),
         )
 
 

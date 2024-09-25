@@ -13,9 +13,11 @@ class GetRide:
         ride = self.ride_repository.get_ride_by_id(ride_id)
         if not ride:
             raise Exception('ride not found')
+        print(ride)
         return {
             'ride_id': ride.get_ride_id(),
             'passenger_id': ride.get_passenger_id(),
+            'driver_id': ride.get_driver_id(),
             'from_lat': ride.get_from().get_lat(),
             'from_long': ride.get_from().get_long(),
             'to_lat': ride.get_to().get_lat(),
