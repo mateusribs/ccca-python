@@ -1,6 +1,7 @@
 from abc import ABCMeta, abstractmethod
 
 import psycopg
+from decouple import config
 from psycopg.rows import namedtuple_row
 
 
@@ -20,7 +21,8 @@ class DatabaseConnection(metaclass=ABCMeta):
 
 class PsycoPgAdapter(DatabaseConnection):
     def __init__(self) -> None:
-        self.connection = psycopg.connect('postgres://postgres:123456@localhost:5432/app')
+        database_url = config('DATABASE_URL', cast=str)
+        self.connection = psycopg.connect(database_url)
         self.connection.adapters.register_loader('numeric', psycopg.types.numeric.FloatLoader)
         self.connection.row_factory = namedtuple_row
 

@@ -9,6 +9,7 @@ dependencies = [
     "dependency-injector>=4.42.0",
     "flask>=3.0.3",
     "psycopg>=3.2.1",
+    "python-decouple>=3.8",
 ]
 
 [tool.uv]
@@ -16,6 +17,7 @@ dev-dependencies = [
     "pytest-cov>=5.0.0",
     "pytest>=8.3.3",
     "ruff>=0.6.5",
+    "testcontainers>=4.8.1",
 ]
 
 
