@@ -1,5 +1,7 @@
 from datetime import datetime
 
+from src.domain.entities.position import Position
+from src.domain.services.distance_calculator import compute_distance
 from src.domain.value_objects.coord import Coord
 from src.domain.value_objects.ride_status import RideStatus
 
@@ -52,3 +54,14 @@ class Ride:
 
     def start(self) -> None:
         self.__status.in_progress()
+
+    def get_distance(self, positions: list[Position]) -> int:
+        distance = 0
+        for index, position in enumerate(positions):
+            try:
+                next_position = positions[index + 1]
+            except IndexError:
+                continue
+            distance += compute_distance(position.get_coord(), next_position.get_coord())
+
+        return distance
