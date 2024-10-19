@@ -3,6 +3,7 @@ import random
 import pytest
 
 from src.application.use_cases.accept_ride import AcceptRide
+from src.application.use_cases.finish_ride import FinishRide
 from src.application.use_cases.get_account import GetAccount
 from src.application.use_cases.get_ride import GetRide
 from src.application.use_cases.request_ride import RequestRide
@@ -26,11 +27,13 @@ def registry():
             'src.application.use_cases.accept_ride',
             'src.application.use_cases.start_ride',
             'src.application.use_cases.update_position',
+            'src.application.use_cases.finish_ride',
             'src.infra.repositories.account_repository',
             'src.infra.repositories.ride_repository',
             'src.infra.controllers.account_controller',
         ]
     )
+    registry.init_resources()
     yield registry
     registry.unwire()
 
@@ -63,6 +66,11 @@ def accept_ride(registry):
 @pytest.fixture(scope='function')
 def start_ride(registry):
     return StartRide()
+
+
+@pytest.fixture(scope='function')
+def finish_ride(registry):
+    return FinishRide()
 
 
 @pytest.fixture(scope='function')

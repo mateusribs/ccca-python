@@ -1,5 +1,6 @@
 from dependency_injector.wiring import Provide, inject
 
+from src.domain.services.distance_calculator import calculate_distance_by_positions
 from src.infra.repositories.position_repository import PositionRepository
 from src.infra.repositories.ride_repository import RideRepository
 
@@ -19,7 +20,11 @@ class GetRide:
         if not ride:
             raise Exception('ride not found')
         positions = self.position_repository.get_position_by_ride_id(ride_id)
-        distance = ride.get_distance(positions)
+        distance = (
+            ride.get_distance()
+            if ride.get_status() == 'completed'
+            else calculate_distance_by_positions(positions)
+        )
         return {
             'ride_id': ride.get_ride_id(),
             'passenger_id': ride.get_passenger_id(),
@@ -31,4 +36,5 @@ class GetRide:
             'status': ride.get_status(),
             'positions': positions,
             'distance': distance,
+            'fare': ride.get_fare(),
         }

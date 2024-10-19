@@ -36,15 +36,17 @@ class RideRepositoryDatabase(RideRepository):
             to_long=ride_data.to_long,
             status=ride_data.status,
             date=ride_data.date,
+            distance=ride_data.distance,
+            fare=ride_data.fare,
         )
 
     def save_ride(self, ride: Ride) -> None:
         self.connection.persist(
             """
             INSERT INTO ccca.ride
-            (ride_id, passenger_id, from_lat, from_long, to_lat, to_long, status, date)
+            (ride_id, passenger_id, from_lat, from_long, to_lat, to_long, status, date, distance, fare)
             VALUES
-            (%s, %s, %s, %s, %s, %s, %s, %s)
+            (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
             """,
             (
                 ride.get_ride_id(),
@@ -55,6 +57,8 @@ class RideRepositoryDatabase(RideRepository):
                 ride.get_to().get_long(),
                 ride.get_status(),
                 ride.get_date(),
+                ride.get_distance(),
+                ride.get_fare(),
             ),
         )
 
@@ -62,10 +66,16 @@ class RideRepositoryDatabase(RideRepository):
         self.connection.persist(
             """
             UPDATE ccca.ride
-            SET driver_id = %s, status = %s
+            SET driver_id = %s, status = %s, distance = %s, fare = %s
             WHERE ride_id = %s
             """,
-            (ride.get_driver_id(), ride.get_status(), ride.get_ride_id()),
+            (
+                ride.get_driver_id(),
+                ride.get_status(),
+                ride.get_distance(),
+                ride.get_fare(),
+                ride.get_ride_id(),
+            ),
         )
 
 

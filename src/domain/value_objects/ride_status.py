@@ -14,3 +14,8 @@ class RideStatus:
         if self.__value != 'accepted':
             raise Exception('invalid status')
         self.__value = 'in_progress'
+
+    def finish(self):
+        if self.__value != 'in_progress':
+            raise Exception('invalid status')
+        self.__value = 'completed'

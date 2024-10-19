@@ -17,3 +17,15 @@ def compute_distance(from_coord: Coord, to_coord: Coord):
     c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
     distance = EARTH_RADIUS * c
     return round(distance)
+
+
+def calculate_distance_by_positions(positions: list) -> int:
+    distance = 0
+    for index, position in enumerate(positions):
+        try:
+            next_position = positions[index + 1]
+        except IndexError:
+            continue
+        distance += compute_distance(position.get_coord(), next_position.get_coord())
+
+    return distance

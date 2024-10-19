@@ -1,7 +1,6 @@
 from datetime import datetime
 
-from src.domain.entities.position import Position
-from src.domain.services.distance_calculator import compute_distance
+from src.domain.services.distance_calculator import calculate_distance_by_positions
 from src.domain.value_objects.coord import Coord
 from src.domain.value_objects.ride_status import RideStatus
 
@@ -18,6 +17,8 @@ class Ride:
         status: str,
         date: datetime,
         driver_id: str = '',
+        distance: int = 0,
+        fare: float = 0.0,
     ) -> None:
         self.__ride_id = ride_id
         self.__passenger_id = passenger_id
@@ -26,6 +27,8 @@ class Ride:
         self.__to = Coord(to_lat, to_long)
         self.__status = RideStatus(status)
         self.__date = date
+        self.__distance = distance
+        self.__fare = fare
 
     def get_ride_id(self) -> str:
         return self.__ride_id
@@ -55,13 +58,14 @@ class Ride:
     def start(self) -> None:
         self.__status.in_progress()
 
-    def get_distance(self, positions: list[Position]) -> int:
-        distance = 0
-        for index, position in enumerate(positions):
-            try:
-                next_position = positions[index + 1]
-            except IndexError:
-                continue
-            distance += compute_distance(position.get_coord(), next_position.get_coord())
+    def get_fare(self) -> float:
+        return self.__fare
 
-        return distance
+    def get_distance(self) -> int:
+        return self.__distance
+
+    def finish(self, positions: list):
+        distance = calculate_distance_by_positions(positions)
+        self.__distance = distance
+        self.__fare = distance * 2.1
+        self.__status.finish()

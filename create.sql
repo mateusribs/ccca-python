@@ -24,7 +24,8 @@ CREATE TABLE ccca.ride (
 	from_long NUMERIC,
 	to_lat NUMERIC,
 	to_long NUMERIC,
-	date TIMESTAMP
+	date TIMESTAMP,
+	fare NUMERIC
 );
 
 
